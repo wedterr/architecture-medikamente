@@ -29,3 +29,5 @@
 | Анонимизация данных                    | Datanymizer                                                      |
 | Сканирование уязвимостей              | Trivy, Mend, Xygeni, Sonatype                                    |
 | Мониторинг и выявление инцидентов     | Security Onion, OSSIM, The Hive                                  |
+
+[Назад к списку заданий](../README.md)
