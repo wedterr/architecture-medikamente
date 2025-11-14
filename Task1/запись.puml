@@ -1,0 +1,21 @@
+@startuml
+rectangle "Пациент" as Client #LightGray
+rectangle "Администратор" as Admin #LightGray
+
+rectangle "1. Регистрация на приём" as P1 #LightCyan
+rectangle "2. Регистрация в журнале записей" as P2 #LightCyan
+rectangle "3. Оформление записи, назначить платёж" as P3 #LightCyan
+rectangle "4. Передача записи" as P4 #LightCyan
+
+rectangle "1. Excel" as DS1 #LightBlue
+
+Client --> P1 : Запрос на приём (ФИО, контактные данные, услуга)
+P1 --> Admin : Данные клиента, запись для администратора
+Admin --> P2 : Данные для журнала (ФИО, дата, услуга)
+Admin --> P3 : Информация о приёме для записи
+P2 --> DS1 : Запись в журнал (структурированные данные записи)
+P3 --> DS1 : Информация о приёме для записи
+Admin --> P4 : Контракт/счёт (данные договора, сумма оплаты)
+P4 --> Client : Документы (контракт, счёт)
+
+@enduml

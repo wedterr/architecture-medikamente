@@ -1,0 +1,31 @@
+@startuml
+rectangle "Клиент" as Client #LightGray
+rectangle "Кассир" as Cashier #LightGray
+rectangle "Касса" as CashDesk #LightGray
+
+rectangle "1. Оплата услуги" as P1 #LightCyan
+rectangle "2. Принятие оплаты у клиента" as P2 #LightCyan
+rectangle "3. Внесение данных в 1С:Бухгалтерия" as P3 #LightCyan
+rectangle "4. Выполненный платеж" as P4 #LightCyan
+rectangle "5. Учёт платежа" as P5 #LightCyan
+rectangle "6. Выдача чека" as P6 #LightCyan
+
+rectangle "1. Excel" as DS1 #LightBlue
+rectangle "2. 1С:Бухгалтерия" as DS2 #LightBlue
+
+Client --> P1 : Запрос оплаты услуги, данные клиента (ФИО, сумма)
+P1 --> Cashier : Информация о платеже (сумма, услуга)
+Cashier --> P2 : Данные платежа (сумма, клиент)
+P2 --> CashDesk : Принятый платёж (сумма, подтверждение)
+P2 --> DS1 : Запись в Excel (отчёт по оплатам)
+P5 --> DS2 : Учёт платежа (детали транзакции)
+CashDesk --> P3 : Данные платежа для внесения в 1С
+P3 --> DS2 : Внесение бухгалтерских данных (платежи, счета)
+DS2 --> P4 : Подтверждение выполненного платежа
+P4 --> Cashier : Информация о статусе платежа
+P5 --> P6 : Команда на выдачу чека
+P6 --> Client : Чек (подтверждение оплаты)
+P1 --> P5 : Информация для учёта платежа (итоги оплаты)
+P5 --> Cashier : Статус учёта платежа
+
+@enduml
